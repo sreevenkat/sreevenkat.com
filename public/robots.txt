@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://sreevenkat.com/sitemap.xml
