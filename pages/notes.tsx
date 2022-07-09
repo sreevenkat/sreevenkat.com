@@ -17,16 +17,14 @@ const Blog = ({ notes }: { notes: BlogFrontMatter[] }) => {
 	return (
 		<Layout
 			title="Notes"
-			description="These are the notes of Bharat, everything from random learnings to interesting facts"
+			description="Notes by Sree Venkat"
 			relativeCanonicalURL="/notes"
 		>
 			<Heading letterSpacing="tight" mb={2} as="h1">
 				Notes
 			</Heading>
 			<Text>
-				Random learnings to interesting facts, these are notes which are not comprehensive enough to be a blog
-				post but usually provide value by themselves. Some of these notes graduate to a blog post if I think
-				they are flushed out enough.
+				These will be notes from the interesting and random projects, their findings and for my own future reference as well.
 			</Text>
 			<InputGroup>
 				<InputLeftElement pointerEvents="none">

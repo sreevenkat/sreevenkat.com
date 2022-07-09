@@ -15,7 +15,7 @@ const Blog = ({ notes }: { notes: BlogFrontMatter[] }) => {
 	const [searchQuery, setSearchQuery] = useState<string>('');
 	const sortedPosts = notes.sort(sortByPinnedAndPublishedAt);
 	return (
-		<Layout title="Blog" description="Blog posts by Bharat Kalluri" relativeCanonicalURL="/blog">
+		<Layout title="Blog" description="Blog posts by Sree Venkat" relativeCanonicalURL="/blog">
 			<Heading letterSpacing="tight" mb={2} as="h1">
 				Blog
 			</Heading>

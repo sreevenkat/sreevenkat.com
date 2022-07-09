@@ -38,7 +38,7 @@ export default function PostPage(props: { source: any; frontMatter: BlogFrontMat
 						<Heading as={'h1'} size={'2xl'} paddingY={2} overflowWrap={'normal'}>
 							{frontMatter.title}
 						</Heading>
-						<Text color="grey">Bharat Kalluri / {publishedAt}</Text>
+						<Text color="grey">Sree Venkat / {publishedAt}</Text>
 					</Flex>
 
 					{postHeroImage && (

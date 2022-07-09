@@ -96,7 +96,7 @@ const DashboardPage = (props: InferGetStaticPropsType<typeof getStaticProps>) =>
 
 			<Text>
 				All the movies and series I watch are recorded in{' '}
-				<CustomLink href="https://trakt.tv/users/bharatkalluri">Trakt</CustomLink>
+				<CustomLink href="https://trakt.tv/users/sreevnkt">Trakt</CustomLink>
 			</Text>
 
 			<Flex wrap={'wrap'} justify={'start'} alignItems={'baseline'}>
@@ -135,7 +135,7 @@ const DashboardPage = (props: InferGetStaticPropsType<typeof getStaticProps>) =>
 
 			<Text>
 				All the books I read are recorded at{' '}
-				<CustomLink href="https://openlibrary.org/people/bharatkalluri">Openlibrary</CustomLink>
+				<CustomLink href="https://openlibrary.org/people/sreevnkt">Openlibrary</CustomLink>
 			</Text>
 
 			<Flex wrap={'wrap'}>
