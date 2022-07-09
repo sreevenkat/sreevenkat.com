@@ -74,15 +74,15 @@ const RecentBlogPosts = ({ recentNotes }: { recentNotes: BlogFrontMatter[] }) =>
 );
 
 const IndexPage = ({ notes }: { notes: BlogFrontMatter[] }) => {
-	// const recentPosts = notes.sort(sortByPublishedAt).slice(0, 3);
+	const recentPosts = !!notes ? notes.sort(sortByPublishedAt).slice(0, 3): [];
 	return (
 		<Layout title="Sree Venkat's Website" relativeCanonicalURL="">
 			<Stack direction="column" spacing={5}>
 				<ProfileSection />
 				<AboutContents />
-				{/*<RecentBlogPosts recentNotes={recentPosts} />*/}
+				{!!recentPosts.length && <RecentBlogPosts recentNotes={recentPosts} />}
 
-				{/*<ProjectListComponent />*/}
+				{!!PROJECT_LIST.length && <ProjectListComponent />}
 			</Stack>
 		</Layout>
 	);

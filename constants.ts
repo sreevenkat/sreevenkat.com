@@ -32,7 +32,7 @@ export const DEFAULT_SEO_CONFIG: DefaultSeoProps = {
 	},
 };
 
-// export const RSS_URL = `/feed.xml`;
+export const RSS_URL = `/feed.xml`;
 export const TWITTER_URL = 'https://twitter.com/sreevnkt';
 export const GITHUB_URL = 'https://github.com/sreevenkat';
 export const LINKEDIN_URL = 'https://linkedin.com/in/sreevenkat';

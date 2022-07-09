@@ -9,7 +9,7 @@ import { NextSeo } from 'next-seo';
 import { BASE_URL } from '../constants';
 import { Button } from '@chakra-ui/button';
 import { GA_TRACKING_ID } from '../lib/gtag';
-import { Subscribe } from './Subscribe';
+// import { Subscribe } from './Subscribe';
 
 type LayoutProps = {
 	children?: ReactNode;
@@ -30,10 +30,10 @@ const navBarItems: Array<{ href: string; text: string }> = [
 		href: '/',
 		text: 'Home',
 	},
-	{
-		href: '/blog',
-		text: 'Blog',
-	},
+	// {
+	// 	href: '/blog',
+	// 	text: 'Blog',
+	// },
 	// {
 	// 	href: '/dashboard',
 	// 	text: 'Dashboard',

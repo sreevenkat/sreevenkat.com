@@ -1,4 +1,4 @@
-import { VStack, Flex, Heading, Text } from '@chakra-ui/react';
+import { VStack, Heading, Text } from '@chakra-ui/react';
 import Layout from '../components/Layout';
 import ContactForm from '../components/ContactForm';
 import { CustomLink } from '../components/CustomLink';
@@ -16,7 +16,7 @@ export const AboutContents = () => (
 			personal projects can be found on github. You can also follow me on steam.
 		</Text>
 		<Text fontSize="lg">
-			I also like to go on hikes and treks. The two major treks I've been to include KGL(Kashmir Great Lakes) and RoopKund.
+			I also like to go on hikes and treks. The two major treks I have been to include KGL(Kashmir Great Lakes) and RoopKund.
 		</Text>
 		<Text fontSize="lg">
 			Also, feel free to{' '}
@@ -30,6 +30,7 @@ export const AboutContents = () => (
 const AboutPage = () => (
 	<Layout title="About" description="About Sree Venkat" relativeCanonicalURL="/about">
 		<AboutContents />
+		<ContactForm />
 	</Layout>
 );
 
