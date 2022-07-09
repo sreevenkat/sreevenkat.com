@@ -147,7 +147,7 @@ const Layout = ({ children, title, description, relativeCanonicalURL, keywords, 
 						}}
 					/>
 					<GoogleAnalyticsSetup />
-					<link rel="icon" type="image/png" href={'/static/logo.png'} />
+					<link rel="icon" type="image/png" href={'/static/icon.png'} />
 					<meta httpEquiv="content-language" content="en-gb" />
 					<html lang={'en'} />
 				</Head>
