@@ -2,7 +2,7 @@ import { IProjectCardProps } from './interfaces';
 import { DefaultSeoProps } from 'next-seo';
 
 // TODO: on local, this should be localhost
-export const BASE_URL: string = 'https://sreevenkat.com';
+export const BASE_URL: string = 'http://localhost:3000';
 
 export const PROJECT_LIST: Array<IProjectCardProps> = [];
 const DEFAULT_TITLE = 'Sree Venkat';

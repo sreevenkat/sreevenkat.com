@@ -10,6 +10,7 @@ import { Button } from '@chakra-ui/button';
 import React from 'react';
 import { AiOutlineArrowRight } from 'react-icons/ai';
 import { PostCard } from '../components/PostCard';
+import {AboutContents} from './about';
 
 export function getStaticProps() {
 	return { props: { notes: getNotesMetadata() } };
@@ -78,7 +79,7 @@ const IndexPage = ({ notes }: { notes: BlogFrontMatter[] }) => {
 		<Layout title="Sree Venkat's Website" relativeCanonicalURL="">
 			<Stack direction="column" spacing={5}>
 				<ProfileSection />
-
+				<AboutContents />
 				{/*<RecentBlogPosts recentNotes={recentPosts} />*/}
 
 				{/*<ProjectListComponent />*/}

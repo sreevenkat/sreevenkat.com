@@ -151,7 +151,7 @@ const DashboardPage = (props: InferGetStaticPropsType<typeof getStaticProps>) =>
 				})}
 			</Flex>
 
-			<Heading>
+			{/* <Heading>
 				<Text size={'2xl'}>Travel</Text>
 			</Heading>
 
@@ -163,7 +163,7 @@ const DashboardPage = (props: InferGetStaticPropsType<typeof getStaticProps>) =>
 					width="100%"
 					height="300"
 				/>
-			</Flex>
+			</Flex> */}
 		</Layout>
 	);
 };
