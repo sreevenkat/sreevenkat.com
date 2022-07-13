@@ -19,7 +19,7 @@ const Footer = () => (
 	<Flex align="center" py={8} direction="column">
 		{/*<NowPlaying />*/}
 		<Flex direction={'row'} fontSize="2xl">
-			<FooterButton text="Now" href="/now" />
+			{/* <FooterButton text="Now" href="/now" /> */}
 			{/* <FooterButton text="Reading log" href="/reading-log" /> */}
 			{/* <FooterButton text="Dashboard" href="/dashboard" /> */}
 			<FooterButton text="Uses" href="/uses" />
