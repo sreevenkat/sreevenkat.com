@@ -12,7 +12,7 @@ I recently had interesting bug and the moment of realisation that caused it is w
 
 ## What is write concern?
 
-This is a configuration which is used to decide, what conditions are to be met for write operation(insert/update) to be successful.
+This is a configuration which is used to decide, what conditions are to be met for a write operation(insert/update) to be successful.
 
 ## Why is Read Optimisation necessary?
 
@@ -40,11 +40,11 @@ When we noticed the anomaly and went debugging we could see that the records in 
 
 Our database connection had the default implicit write concern which is “majority”. Now what that means is that in a 3 node cluster, if 2 nodes(1P and 1S) acknowledge the write request then, the operation is considered successful.
 
-However we had moved the read queries to secondary which could any of the 2 secondary nodes. The booking error we noticed was the case where the read query from the side-effect went to the secondary node which had not yet received the changes to be replicated due to a slightly increased replication lag.
+However we had moved the read queries to secondary which could be any of the 2 secondary nodes. The anomaly we noticed was the case where the read query from the side-effect went to the secondary node which had not yet received the changes to be replicated due to a slightly increased replication lag.
 
 ## Mitigation
 
-We immediately went through the optimisation changes and ensured that all the primary key based queries do not read from the secondary.
+We immediately went through the optimisation changes and ensured that all the primary key based queries do not read from the secondary. We did not change the write concern since that would slow down writes, since some replication lag is affordable for this use case.
 
 ## Concepts discussed
 
