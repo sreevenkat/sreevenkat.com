@@ -1,0 +1,57 @@
+---
+title: Mongo Read Optimisation: Write Concern
+publishedAt: '2023-07-14'
+description: Concerns to be aware as part of read optimisation efforts in MongoDB
+hero: https://unsplash.com/photos/M3cxjDNiLlQ/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8NHx8b3JkZXJ8fDB8fHx8MTYzOTE3NDc2OA&force=true&w=1920
+tags:
+    - mongo-db
+    - read-optimisation
+isBlogPost: true
+---
+
+# Mongo Read Optimisation: Write Concern
+
+I recently had interesting bug and the moment of realisation that caused it is when I learnt the even something as harmless as database read optimisation could lead to a significant error.
+
+## What is write concern?
+
+This is a configuration which is used to decide, what conditions are to be met for write operation(insert/update) to be successful.
+
+## Why is Read Optimisation necessary?
+
+Database optimisations are bread and butter of almost all applications, especially when they are user facing. Now based on the nature of your application and product you might choose to optimise for either reads or write or both of them.
+
+There are also some metrics from an infra perspective that need to be me looked out for in order to ensure that the database instance has enough capacity to handle requests. These could be metrics like number of connections, cpu utilisation, disk utilisation and memory utilisation.
+
+## Scenario:
+
+Let us take the scenario where you’re building a platform that allows theatres to distribute tickets to their shows. Such an application will need to perform some aggregate queries in order allow its users to find shows across theatres and various shows in a given theatre.
+
+This platform is using MongoDB on Atlas as a dedicated cluster with a 3 node setup consisting of 1 Primary and 2 Secondary nodes (P-S-S).
+
+## The Optimisation
+
+Now with growing data size and user traffic both queries and database usage will need to optimised. After optimising the queries we noticed that from an infrastructure perspective it would be more efficient to move all the reads to the secondary node of our MongoDB cluster.
+
+Unknowingly both aggregate and some of the primary key based queries were modified to set read preference as secondary .
+
+There were some side-effects to the booking flow for analytics purposes which were querying to identify booking record by id. This resulted in some data being recorded in the analytics tool which was not accurate from the actual bookings that had taken place
+
+When we noticed the anomaly and went debugging we could see that the records in the database where reflecting the correct terminal state.
+
+## So how did this happen?. . .
+
+Our database connection had the default implicit write concern which is “majority”. Now what that means is that in a 3 node cluster, if 2 nodes(1P and 1S) acknowledge the write request then, the operation is considered successful.
+
+However we had moved the read queries to secondary which could any of the 2 secondary nodes. The booking error we noticed was the case where the read query from the side-effect went to the secondary node which had not yet received the changes to be replicated due to a slightly increased replication lag.
+
+## Mitigation
+
+We immediately went through the optimisation changes and ensured that all the primary key based queries do not read from the secondary.
+
+## Concepts discussed
+
+    1. [Read Preference](https://www.mongodb.com/docs/manual/core/read-preference/)
+    2. [Write Concern](https://www.mongodb.com/docs/manual/reference/write-concern/)
+    3. [Replica Sets Write Concern](https://www.mongodb.com/docs/manual/core/replica-set-write-concern/)
+    4. [Replication Lag](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#replication-lag-and-flow-control)
