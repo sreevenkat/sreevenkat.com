@@ -1,15 +1,12 @@
 ---
-title: Mongo Read Optimisation: Write Concern
+title: 'Mongo Read Optimisation: Write Concern'
 publishedAt: '2023-07-14'
 description: Concerns to be aware as part of read optimisation efforts in MongoDB
-hero: https://unsplash.com/photos/M3cxjDNiLlQ/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8NHx8b3JkZXJ8fDB8fHx8MTYzOTE3NDc2OA&force=true&w=1920
 tags:
     - mongo-db
     - read-optimisation
 isBlogPost: true
 ---
-
-# Mongo Read Optimisation: Write Concern
 
 I recently had interesting bug and the moment of realisation that caused it is when I learnt the even something as harmless as database read optimisation could lead to a significant error.
 
@@ -51,7 +48,7 @@ We immediately went through the optimisation changes and ensured that all the pr
 
 ## Concepts discussed
 
-    1. [Read Preference](https://www.mongodb.com/docs/manual/core/read-preference/)
-    2. [Write Concern](https://www.mongodb.com/docs/manual/reference/write-concern/)
-    3. [Replica Sets Write Concern](https://www.mongodb.com/docs/manual/core/replica-set-write-concern/)
-    4. [Replication Lag](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#replication-lag-and-flow-control)
+1. [Read Preference](https://www.mongodb.com/docs/manual/core/read-preference/)
+2. [Write Concern](https://www.mongodb.com/docs/manual/reference/write-concern/)
+3. [Replica Sets Write Concern](https://www.mongodb.com/docs/manual/core/replica-set-write-concern/)
+4. [Replication Lag](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#replication-lag-and-flow-control)
