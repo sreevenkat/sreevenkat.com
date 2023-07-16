@@ -4,7 +4,7 @@ import { DefaultSeoProps } from 'next-seo';
 export const BASE_URL: string = 'https://sreevenkat.com';
 
 export const PROJECT_LIST: Array<IProjectCardProps> = [];
-const DEFAULT_TITLE = 'Sree Venkat - Software Engineer, Game Design enthusiast';
+export const DEFAULT_TITLE = 'Sree Venkat - Software Engineer, Game Design enthusiast';
 const TWITTER_HANDLE = '@sreevnkt';
 
 export const DEFAULT_SEO_CONFIG: DefaultSeoProps = {

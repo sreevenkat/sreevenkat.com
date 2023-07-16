@@ -11,6 +11,7 @@ import React from 'react';
 import { AiOutlineArrowRight } from 'react-icons/ai';
 import { PostCard } from '../components/PostCard';
 import {AboutContents} from './about';
+import { DEFAULT_TITLE } from '../constants'
 
 export function getStaticProps() {
 	return { props: { notes: getNotesMetadata() } };
@@ -76,7 +77,7 @@ const RecentBlogPosts = ({ recentNotes }: { recentNotes: BlogFrontMatter[] }) =>
 const IndexPage = ({ notes }: { notes: BlogFrontMatter[] }) => {
 	const recentPosts = !!notes ? notes.sort(sortByPublishedAt).slice(0, 3): [];
 	return (
-		<Layout title="Sree Venkat's Website" relativeCanonicalURL="">
+		<Layout title={DEFAULT_TITLE} relativeCanonicalURL="">
 			<Stack direction="column" spacing={5}>
 				<ProfileSection />
 				<AboutContents />
