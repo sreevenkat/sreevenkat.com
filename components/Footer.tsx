@@ -1,7 +1,6 @@
 import React from 'react';
-import { Button, Flex, IconButton, Link } from '@chakra-ui/react';
+import { Flex, IconButton, Link } from '@chakra-ui/react';
 import { FaGithub, FaLinkedin, FaTelegramPlane, FaTwitter, FaRss } from 'react-icons/fa';
-import NextLink from 'next/link';
 // import NowPlaying from './NowPlaying';
 import { GITHUB_URL, LINKEDIN_URL, TELEGRAM_URL, TWITTER_URL, RSS_URL } from '../constants';
 
