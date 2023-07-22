@@ -39,8 +39,8 @@ const navBarItems: Array<{ href: string; text: string }> = [
 		text: 'About',
 	},
 	{
-		href: '/uses',
-		text: 'User',
+		href: '/stack',
+		text: 'Stack',
 	},
 ];
 
