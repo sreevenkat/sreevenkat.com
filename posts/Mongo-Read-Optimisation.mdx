@@ -8,9 +8,9 @@ tags:
 isBlogPost: true
 ---
 
-## Why is Read Optimisation necessary?
+## Why Read Optimisation?
 
-Database optimisations are the bread and butter of almost all applications, especially when they are user facing. Now based on the nature of your application and product you might choose to optimise for either reads or write or both of them.
+In order to provide good user experience, one of the key concerns is to ensure that the application is fast. Other than optimisations that can be done at an application level, database optimisations are the bread and butter of almost all applications, especially when they are user facing. Now based on the nature of your application and product you might choose to optimise for either reads or write or both of them.
 
 There are also some metrics from an infra perspective that need to be looked out for in order to ensure that the database instance has enough capacity to handle requests. These could be metrics like number of connections, cpu utilisation, disk utilisation and memory utilisation.
 
@@ -26,9 +26,9 @@ This platform is using MongoDB on Atlas as a dedicated cluster with a 3 node set
 
 ## The Optimisation
 
-Now with growing data size and user traffic both queries and database usage will need to optimised. After optimising the queries we noticed that from an infrastructure perspective it would be more efficient to move all the reads to the secondary node of our MongoDB cluster.
+Now with growing data size and user traffic both queries and database usage will need to optimised. After optimising the queries it was evident from an infrastructure perspective that it would be more efficient to move all the reads to the secondary node of our MongoDB cluster.
 
-Unknowingly both aggregate and some of the primary key based queries were modified to set read preference as secondary .
+Unknowingly both aggregate and some primary key based queries were modified to read from the secondary node using the readPreference configuration.
 
 There were some side-effects to the booking flow for analytics purposes which were querying to identify booking record by id. This resulted in some data being recorded in the analytics tool which was not accurate from the actual bookings that had taken place
 
@@ -36,13 +36,13 @@ When we noticed the anomaly and went debugging we could see that the records in 
 
 ## So how did this happen?. . .
 
-Our database connection had the default implicit write concern which is “majority”. Now what that means is that in a 3 node cluster, if 2 nodes(1P and 1S) acknowledge the write request then, the operation is considered successful.
+The database connection had the default implicit write concern which is “majority”. Now what that means is that in a 3 node cluster, if 2 nodes(1P and 1S) acknowledge the write request then, the operation is considered successful.
 
-However we had moved the read queries to secondary which could be any of the 2 secondary nodes. The anomaly we noticed was the case where the read query from the side-effect went to the secondary node which had not yet received the changes to be replicated due to a slightly increased replication lag.
+When read queries were moved to the secondary it could have been any of the 2 secondary nodes. The anomaly was the case where the read query from the side-effect went to the non-major secondary node which had not yet received the changes to be replicated due to a slightly increased replication lag at the time.
 
 ## Mitigation
 
-We immediately went through the optimisation changes and ensured that all the primary key based queries do not read from the secondary. We did not change the write concern since that would slow down writes, since some replication lag is affordable for this use case.
+Ensuring that all the non-aggregate queries are reading from the primary assured that the data would be consistent. The write concern however was not changed from majority since that would slow down writes and some replication lag seemed to be affordable.
 
 ## Concepts discussed
 
