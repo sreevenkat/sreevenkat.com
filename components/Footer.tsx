@@ -5,15 +5,15 @@ import NextLink from 'next/link';
 // import NowPlaying from './NowPlaying';
 import { GITHUB_URL, LINKEDIN_URL, TELEGRAM_URL, TWITTER_URL, RSS_URL } from '../constants';
 
-const FooterButton = (props: { text: string; href: string }) => {
-	return (
-		<NextLink href={props.href} passHref>
-			<Button as="a" variant="ghost" fontWeight="300">
-				{props.text}
-			</Button>
-		</NextLink>
-	);
-};
+// const FooterButton = (props: { text: string; href: string }) => {
+// 	return (
+// 		<NextLink href={props.href} passHref>
+// 			<Button as="a" variant="ghost" fontWeight="300">
+// 				{props.text}
+// 			</Button>
+// 		</NextLink>
+// 	);
+// };
 
 const Footer = () => (
 	<Flex align="center" py={8} direction="column">
