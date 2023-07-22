@@ -22,7 +22,6 @@ const Footer = () => (
 			{/* <FooterButton text="Now" href="/now" /> */}
 			{/* <FooterButton text="Reading log" href="/reading-log" /> */}
 			{/* <FooterButton text="Dashboard" href="/dashboard" /> */}
-			<FooterButton text="Uses" href="/uses" />
 		</Flex>
 		<div>
 			<Link href={TWITTER_URL} title="Twitter" isExternal>

@@ -30,17 +30,17 @@ const navBarItems: Array<{ href: string; text: string }> = [
 		href: '/',
 		text: 'Home',
 	},
-	// {
-	// 	href: '/blog',
-	// 	text: 'Blog',
-	// },
-	// {
-	// 	href: '/dashboard',
-	// 	text: 'Dashboard',
-	// },
+	{
+		href: '/blog',
+		text: 'Blog',
+	},
 	{
 		href: '/about',
 		text: 'About',
+	},
+	{
+		href: '/uses',
+		text: 'User',
 	},
 ];
 
