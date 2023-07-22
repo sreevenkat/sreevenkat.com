@@ -9,7 +9,7 @@ import { Textarea } from '@chakra-ui/textarea';
 const ContactForm = () => {
 	return (
 		<>
-			<form action="https://formcarry.com/s/OE1SQSGGdn" method="POST">
+			<form action="https://formcarry.com/s/Y3V7EHDTbb" method="POST">
 				<Stack spacing={5}>
 					<Heading size="xl">Contact me</Heading>
 
