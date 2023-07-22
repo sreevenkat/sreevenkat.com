@@ -5,6 +5,7 @@ export const BASE_URL: string = 'https://sreevenkat.com';
 
 export const PROJECT_LIST: Array<IProjectCardProps> = [];
 export const DEFAULT_TITLE = 'Sree Venkat - Software Engineer, Game Design enthusiast';
+export const DEFAULT_DESCRIPTION = 'A curious developer, game design enthusiast with a recent interest to publish what I explore.';
 const TWITTER_HANDLE = '@sreevnkt';
 
 export const DEFAULT_SEO_CONFIG: DefaultSeoProps = {
