@@ -47,7 +47,7 @@ const ProfileSection = () => (
 
 const RecentBlogPosts = ({ recentNotes }: { recentNotes: BlogFrontMatter[] }) => (
 	<Stack py={5} spacing={5}>
-		<Heading>Writings</Heading>
+		<Heading>Posts</Heading>
 		<Stack direction="column" spacing={5}>
 			{recentNotes.map((frontMatter) => (
 				<PostCard key={frontMatter.title} frontMatter={frontMatter} folderPrefix="posts/" />
