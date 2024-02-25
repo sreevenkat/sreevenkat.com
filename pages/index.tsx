@@ -10,7 +10,6 @@ import { Button } from '@chakra-ui/button';
 import React from 'react';
 import { AiOutlineArrowRight } from 'react-icons/ai';
 import { PostCard } from '../components/PostCard';
-import {AboutContents} from './about';
 import { DEFAULT_TITLE, DEFAULT_DESCRIPTION } from '../constants'
 
 export function getStaticProps() {
@@ -40,7 +39,7 @@ const ProfileSection = () => (
 				Hi, I&apos;m Sree Venkat Ganapathi 👋
 			</Heading>
 			<Text fontSize={'md'}>
-				Software engineer at Refyne.
+				Welcome to my website where I share some of my learnings.
 			</Text>
 		</Stack>
 	</Stack>
@@ -74,7 +73,6 @@ const IndexPage = ({ notes }: { notes: BlogFrontMatter[] }) => {
 		<Layout title={DEFAULT_TITLE} description={DEFAULT_DESCRIPTION} relativeCanonicalURL="">
 			<Stack direction="column" spacing={5}>
 				<ProfileSection />
-				<AboutContents />
 				{!!recentPosts.length && <RecentBlogPosts recentNotes={recentPosts} />}
 
 				{!!PROJECT_LIST.length && <ProjectListComponent />}
