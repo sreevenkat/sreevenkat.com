@@ -6,7 +6,8 @@ const UsesPage = () => {
 
 	const computerSetup = [
 		'13" Macbook Pro (M1)',
-		'Razer Basilisk X HyperSpeed Mouse',
+		'Razer Basilisk X HyperSpeed Mouse(Not worth the money)',
+		'Logitech G304 Wireless Mouse',
 		'KeyChron K2V2 mechanical keyboard',
 		'Assembled Desktop with Ryzen 5 5600X and RTX 3070(FE)',
 		'LG 32" QHD Monitor',
@@ -18,8 +19,7 @@ const UsesPage = () => {
 		'VS Code',
 		'WebStorm',
 		'Slack Desktop for office comms',
-		'Spotify Desktop for music (scrobbles to last.fm)',
-		'1Password',
+		'Bitwarden',
 		'Github',
 		'Bear for notes',
 		'Signal and Whatsapp for messaging',
@@ -35,10 +35,10 @@ const UsesPage = () => {
 	];
 
 	return (
-		<Layout title="Uses" relativeCanonicalURL="/uses">
+		<Layout title="Stack" relativeCanonicalURL="/stack">
 			<Stack direction="column" spacing={5} fontSize="lg">
 				<Text fontSize="6xl" fontWeight="extrabold">
-					Uses
+					Stack
 				</Text>
 
 				<Text>Here are the tools and tech I use to code, write, get work done in general and play.</Text>
