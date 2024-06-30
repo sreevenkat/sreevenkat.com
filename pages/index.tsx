@@ -45,19 +45,41 @@ const ProfileSection = () => (
 	</Stack>
 );
 
-const RecentBlogPosts = ({ recentNotes }: { recentNotes: BlogFrontMatter[] }) => (
+const RecentBlogPosts = ({ recentPosts }: { recentPosts: BlogFrontMatter[] }) => (
 	<Stack py={5} spacing={5}>
 		<Heading>Posts</Heading>
 		<Stack direction="column" spacing={5}>
-			{recentNotes.map((frontMatter) => (
+			{recentPosts.map((frontMatter) => (
 				<PostCard key={frontMatter.title} frontMatter={frontMatter} folderPrefix="posts/" />
 			))}
 
 			<Flex flexDirection={'row-reverse'}>
-				<NextLink href={'/blog'}>
+				<NextLink href={'/posts'}>
 					<Button>
 						<Stack direction="row" align="center" style={{ width: '100%' }} justify="space-between">
-							<Text>Read all posts</Text>
+							<Text>View all posts</Text>
+							<AiOutlineArrowRight size="20" />
+						</Stack>
+					</Button>
+				</NextLink>
+			</Flex>
+		</Stack>
+	</Stack>
+);
+
+const RecentNotes = ({ recentNotes }: { recentNotes: BlogFrontMatter[] }) => (
+	<Stack py={5} spacing={5}>
+		<Heading>Notes</Heading>
+		<Stack direction="column" spacing={5}>
+			{recentNotes.map((frontMatter) => (
+				<PostCard key={frontMatter.title} frontMatter={frontMatter} folderPrefix="notes/" />
+			))}
+
+			<Flex flexDirection={'row-reverse'}>
+				<NextLink href={'/notes'}>
+					<Button>
+						<Stack direction="row" align="center" style={{ width: '100%' }} justify="space-between">
+							<Text>View all notes</Text>
 							<AiOutlineArrowRight size="20" />
 						</Stack>
 					</Button>
@@ -68,12 +90,14 @@ const RecentBlogPosts = ({ recentNotes }: { recentNotes: BlogFrontMatter[] }) =>
 );
 
 const IndexPage = ({ notes }: { notes: BlogFrontMatter[] }) => {
-	const recentPosts = !!notes ? notes.sort(sortByPublishedAt).slice(0, 3): [];
+	const recentPosts = !!notes ? notes.filter((note: BlogFrontMatter) => (note.isBlogPost)).sort(sortByPublishedAt).slice(0, 3): [];
+	const recentNotes = !!notes ? notes.filter((note: BlogFrontMatter) => (!note.isBlogPost)).sort(sortByPublishedAt).slice(0, 3): [];
 	return (
 		<Layout title={DEFAULT_TITLE} description={DEFAULT_DESCRIPTION} relativeCanonicalURL="">
 			<Stack direction="column" spacing={5}>
 				<ProfileSection />
-				{!!recentPosts.length && <RecentBlogPosts recentNotes={recentPosts} />}
+				{!!recentPosts.length && <RecentBlogPosts recentPosts={recentPosts} />}
+				{!!recentNotes.length && <RecentNotes recentNotes={recentNotes} />}
 
 				{!!PROJECT_LIST.length && <ProjectListComponent />}
 			</Stack>

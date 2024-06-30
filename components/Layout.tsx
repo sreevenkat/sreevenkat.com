@@ -31,8 +31,12 @@ const navBarItems: Array<{ href: string; text: string }> = [
 		text: 'Home',
 	},
 	{
-		href: '/blog',
-		text: 'Blog',
+		href: '/posts',
+		text: 'Posts',
+	},
+	{
+		href: '/notes',
+		text: 'Notes',
 	},
 	{
 		href: '/about',
@@ -157,9 +161,6 @@ const Layout = ({ children, title, description, relativeCanonicalURL, keywords, 
 				<Flex as="main" justifyContent="center" flexDirection="column" px={4} mx="auto" mt={8} maxW="1000px">
 					<Stack spacing={7}>{children}</Stack>
 				</Flex>
-				{/*<Flex justifyContent={'center'} mt={8}>*/}
-				{/*	<Subscribe />*/}
-				{/*</Flex>*/}
 				<Footer />
 			</div>
 		</>

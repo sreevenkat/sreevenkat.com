@@ -11,9 +11,9 @@ export function getStaticProps() {
 	return { props: { notes: getNotesMetadata() } };
 }
 
-const Blog = ({ notes }: { notes: BlogFrontMatter[] }) => {
+const Notes = ({ notes }: { notes: BlogFrontMatter[] }) => {
 	const [searchQuery, setSearchQuery] = useState<string>('');
-	const sortedNotes = notes.sort(sortByPinnedAndPublishedAt);
+	const sortedNotes = notes.filter((note)=>!note.isBlogPost).sort(sortByPinnedAndPublishedAt);
 	return (
 		<Layout
 			title="Notes"
@@ -24,7 +24,7 @@ const Blog = ({ notes }: { notes: BlogFrontMatter[] }) => {
 				Notes
 			</Heading>
 			<Text>
-				These will be notes from the interesting and random projects, their findings and for my own future reference as well.
+				These will be notes from the interesting and random projects, their findings, event notes and for general future reference.
 			</Text>
 			<InputGroup>
 				<InputLeftElement pointerEvents="none">
@@ -40,10 +40,10 @@ const Blog = ({ notes }: { notes: BlogFrontMatter[] }) => {
 				.filter((f: BlogFrontMatter) => !f.draft && f.isBlogPost !== true)
 				.filter((f: BlogFrontMatter) => searchInFrontMatter(f, searchQuery))
 				.map((frontMatter: BlogFrontMatter) => (
-					<PostCard key={frontMatter.title} frontMatter={frontMatter} folderPrefix="posts/" />
+					<PostCard key={frontMatter.title} frontMatter={frontMatter} folderPrefix="notes/" />
 				))}
 		</Layout>
 	);
 };
 
-export default Blog;
+export default Notes;

@@ -1,0 +1,92 @@
+---
+title: 'FOSS: India 2023 - Notes'
+publishedAt: '2023-07-14'
+description: 'Notes from FOSS: India 2023'
+tags:
+    - foss-india-2023
+    - OSS - projects
+isBlogPost: false
+---
+
+# Day 1
+
+## Vyaakaran
+- Akash Hamirvasya
+- Automata theory
+- Vyaakaran is a web tool, that can be used structurally visualise and interact with automata 
+- PES innovation lab
+
+## Build with Hussain
+- Started off as a teaching assistant
+- Joined frappe as an engineer 
+- After a while back to blogs on how to use frappe
+- Then started teaching on YT after a lot of forethought 
+- Swept off by the feedback
+- Now running build with Hussain as a separate channel
+
+## O11Y and OTEL
+- OTEL is one of the many CNCF projects
+- OTEL is a combination of OpenTracing and OpenCensus
+- Observability Driven Development 
+
+## Hoppscotch
+- Crossed 55k stars on GH
+- Got awarded in the lambda teat conf
+- Calendar based versioning 
+- 3X growth on teams, collections and usage
+- Desktop App that is fast [wonder what is the framework?]
+
+## Keploy
+- Auto generated test cases from specs and schema
+- Captures network calls from application environment and replays the scenario
+- Deduplicates test on code paths
+- Can be self hosted
+
+## VulnerableCode
+- ***Tagline***: Vulnerability db should not be vulnerable 
+- Vulnerability databases are often contradictory to each other on 
+  - Severity
+  - Flagged versions
+- Vulnerability databases are closed source 
+- Hard to identify if a vulnerable package is being used actively or passively by another package which is a dependency 
+- What is different about VulnerableCode
+  - Packages are a first class citizen 
+  - When a version is flagged other packages that are potentially affected are also identified down to the specific version/subversion that is vulnerable 
+  - Use package uri `pkg:pypi/requests@1.0` aka ***Purl***
+  - ***PurlDb***: Everything about a package
+  - ***vers***: Simple naming spec for representing versions that are un/safe. `vers: >0.0.5|1.0.0-1.0.4|!0.8`
+  - ***Vulntotal***: Comparison engine for vulnerability databases [PoC]
+
+## Tattle >> Uli >> Open Source AI
+- Foundation and Base models enable downstream domains
+- Not a very clear distinction b/w open and closed models published recently 
+- GPT2 was initially restricted but was released when another academic group recreated most of it
+- Open AI is now fully closed despite having open in its name
+- OSS AI: For AI to be OSS data, model, code and documentation must be open
+
+## Build Hardware in OSS
+- Allegro/Altium - PCB layout tool
+- Proprietary tools Solid works / CATIA
+  - Reliable since smallest mistake can cost 5k$ and 4-5 weeks of shipment delay
+  - Significant automation available 
+  - Talent available in tools since companies are large
+- KiCAD - OSS EDA tool
+- OSS benefits 
+  - 3 different proprietary tools are under one workdlow
+  - Community Support
+  - Free from licensing 
+  - 3D visualisation 
+  - Upper hand over larger companies since tools are available and production is feasible thanks to China
+  - Maker movement
+- Smart Terminal: Product that allows multiple people share a single compute source. Cost effective and sustainable for schools instead of each kid having a device. 
+
+## Plane Project Management
+- Django/ NextJS stack with Postgres and redis
+- Supports various data formats all the way from charts, gantts to spreadsheets 
+- Can be self hosted
+
+## Custom Load Balancer
+- Focused on handling HTTP traffic and not TCP traffic
+- ***Envoy***: CNCF project built in C
+- Summary: A custom implementation using Envoy where we can implement routing algorithms and filter chains as per the requirement
+  - Benefits: Can choose the rite type of instance, cost optimisation, scaling as per business requirement
