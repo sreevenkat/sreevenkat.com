@@ -1,0 +1,81 @@
+    ---
+    title: 'Debugging 5XX: Using AWS ELB logs on a Kubernetes Deployment'
+    publishedAt: '2024-10-10'
+    description: how aws load balancer logs helped identify selective drops from the node port
+    tags:
+        - 5xx
+        - aws-elb logs
+        - debugging
+        - node-port
+        - selective-drops
+    isBlogPost: true
+    ---
+
+## Intro
+
+I recently had a fast api application deployed on Kubernetes with traffic routed from an AWS application load balancer via a [Node Port](https://www.tkng.io/services/nodeport/).
+The issue turned out to be that the client which was interacting with this application kept reporting HTTP 502 response codes on sentry,
+but there was no log of the failure on the fast-api applications' logs.
+
+## Where is the missing 502?
+
+So there was evidence of HTTP 502, but, nothing on the application logs or from Sentry on the fast-api application. Interestingly on the
+AWS load balancer the monitoring tab displayed ELB 5XX trend which was not matching with the target 5XX trend. This helped indicate that
+the 502 was not originating from the target. 
+
+Then came to the rescue load balancer logs, the devops engineer I was working with had [enabled access logs](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/enable-access-logging.html) for the load balancer.
+
+```
+https 2018-07-02T22:23:00.186641Z app/my-loadbalancer/50dc6c495c0c9188 
+192.168.131.39:2817 10.0.0.1:80 0.086 0.048 0.037 502 - 0 57 
+"GET https://www.example.com:443/ HTTP/1.1" "curl/7.46.0" ECDHE-RSA-AES128-GCM-SHA256 TLSv1.2 
+arn:aws:elasticloadbalancing:us-east-2:123456789012:targetgroup/my-targets/73e2d6bc24d8a067
+"Root=1-58337281-1d84f3d73c47ec4e58577259" "www.example.com" "arn:aws:acm:us-east-2:123456789012:certificate/12345678-1234-1234-1234-123456789012"
+1 2018-07-02T22:22:48.364000Z "authenticate,forward" "-" "-" "10.0.0.1:80" "200" "-" "-" TID_123456
+```
+
+In the same log above, right before the http method you will find a set of space separated numbers where you will find `502 -`. This served as evidence that 
+the this request not even reach the target. This was happending to the Node Port intentionally dropping some requests since the application service was processing
+another request. 
+
+## Why Node Port Alone Wasn't Sufficient
+
+When using Node Port directly with the AWS Load Balancer, we encountered an architectural limitation. Node Port operates at the kernel level using iptables rules for traffic forwarding. Here's what happens:
+
+1. The Load Balancer sends a request to the Node Port
+2. Node Port uses iptables to immediately attempt forwarding to the target pod
+3. If the target pod is busy or its connection queue is full:
+   - iptables immediately drops the connection
+   - No retry mechanism exists at this layer
+   - The Load Balancer receives a connection failure
+   - This results in the 502 errors we observed
+
+Unlike application-layer proxies (like Nginx), Node Port lacks request queuing capabilities. It operates at the network layer (Layer 4) and makes immediate forward/drop decisions based on the current state of the target pod's network stack.
+
+## Mitigation
+
+The issue was occurring because the Node Port was immediately dropping requests when the target application was busy processing other requests. To address this, we implemented two key changes:
+
+1. Added Nginx as a reverse proxy between the Load Balancer and the application service. This helped because:
+   - Nginx's event-driven architecture allows it to queue and hold incoming requests
+   - Its connection pooling capabilities help manage concurrent connections more efficiently
+   - It provides better control over request buffering and timeouts
+
+2. Tuned the configuration parameters:
+   - Adjusted worker connections and keepalive settings in Nginx
+   - Set appropriate timeouts both on the Load Balancer and Nginx level
+   - Configured proper backlog queue sizes for the Node Port
+
+This setup proved more resilient because Nginx's event loop can hold and queue requests instead of immediately dropping them like the Node Port's direct iptables forwarding mechanism. The Node Port's behavior of immediately attempting to forward requests and dropping them when the host is busy was replaced with Nginx's more sophisticated request handling.
+
+## Concepts discussed
+
+1. [Node Port](https://www.tkng.io/services/nodeport/)
+   - [Kubernetes NodePort Deep Dive](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport)
+   - [Understanding iptables in Kubernetes](https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies)
+2. [Application Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html)
+3. [Enable Load Balancer Access Logs](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/enable-access-logging.html)
+4. Nginx Event Loop and Request Handling
+   - [Understanding Nginx Architecture](https://www.nginx.com/blog/inside-nginx-how-we-designed-for-performance-scale/)
+   - [Nginx Connection Processing](https://nginx.org/en/docs/events.html)
+   - [Nginx as Reverse Proxy](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/)
