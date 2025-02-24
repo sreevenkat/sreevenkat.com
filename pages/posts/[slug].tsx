@@ -5,9 +5,8 @@ import { MDXComponents } from '../../components/MDXComponents';
 import { BlogFrontMatter, BlogFrontMatterValidator } from '../../types';
 import { getNoteMetadata, postFilePaths } from '../../utils/mdxUtils';
 import decodeWith from '../../utils/ioTsUtils';
-import { Image, Stack, Text } from '@chakra-ui/react';
+import { Image, Stack, Text, Flex, Heading } from '@chakra-ui/react';
 import React from 'react';
-import { Flex, Heading } from '@chakra-ui/layout';
 
 export default function PostPage(props: { source: any; frontMatter: BlogFrontMatter; postFileName: string }) {
 	const frontMatter = decodeWith(BlogFrontMatterValidator)(props.frontMatter);

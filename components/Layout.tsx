@@ -1,13 +1,12 @@
 import React, { ReactNode } from 'react';
 import NextLink from 'next/link';
 import Head from 'next/head';
-import { Box, Flex, Stack } from '@chakra-ui/layout';
-import { IconButton, useColorMode } from '@chakra-ui/react';
+import { Box, Flex, Stack, IconButton, useColorMode } from '@chakra-ui/react';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import Footer from './Footer';
 import { NextSeo } from 'next-seo';
 import { BASE_URL } from '../constants';
-import { Button } from '@chakra-ui/button';
+import { Button } from '@chakra-ui/react';
 import { GA_TRACKING_ID } from '../lib/gtag';
 // import { Subscribe } from './Subscribe';
 

@@ -6,7 +6,7 @@ import { getNotesMetadata } from '../utils/mdxUtils';
 import { BlogFrontMatter } from '../types';
 import { sortByPublishedAt } from '../utils/postUtils';
 import NextLink from 'next/link';
-import { Button } from '@chakra-ui/button';
+import { Button } from '@chakra-ui/react';
 import React from 'react';
 import { AiOutlineArrowRight } from 'react-icons/ai';
 import { PostCard } from '../components/PostCard';
