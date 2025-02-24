@@ -10,10 +10,10 @@
     "vc-dev": "./node_modules/.bin/vc dev"
   },
   "dependencies": {
-    "@chakra-ui/icons": "^1.0.13",
-    "@chakra-ui/react": "^1.6.4",
-    "@emotion/react": "^11.4.0",
-    "@emotion/styled": "^11.3.0",
+    "@chakra-ui/icons": "^2.1.1",
+    "@chakra-ui/react": "^2.8.2",
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
     "axios": "^0.21.1",
     "date-fns": "^2.22.1",
     "fp-ts": "^2.10.5",
