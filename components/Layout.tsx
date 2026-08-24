@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import NextLink from 'next/link';
 import Head from 'next/head';
+import Script from 'next/script';
 import { Box, Flex, Stack, IconButton, useColorMode } from '@chakra-ui/react';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import Footer from './Footer';
@@ -40,6 +41,10 @@ const navBarItems: Array<{ href: string; text: string }> = [
 	{
 		href: '/about',
 		text: 'About',
+	},
+	{
+		href: '/memento-vivere',
+		text: 'Memento Vivere',
 	},
 	{
 		href: '/stack',
@@ -97,8 +102,9 @@ const NavBar = () => {
 
 const GoogleAnalyticsSetup = () => (
 	<>
-		<script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
-		<script
+		<Script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
+		<Script
+			id="ga-init"
 			dangerouslySetInnerHTML={{
 				__html: `
 		    window.dataLayer = window.dataLayer || [];
@@ -131,29 +137,29 @@ const Layout = ({ children, title, description, relativeCanonicalURL, keywords, 
 			/>
 			<div>
 				<Head>
-					<title>{title ? `${title} |` : ''} Sree Venkat </title>
+					<title>{title ? `${title} | Sree Venkat` : 'Sree Venkat'}</title>
 					<meta charSet="utf-8" />
 					<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 					{keywords !== undefined && (
 						<meta name="keywords" content={keywords.map((el) => el.replace('-', ' ')).join(', ')} />
 					)}
-					<script
-						type="text/javascript"
-						dangerouslySetInnerHTML={{
-							__html: `
+					<link rel="icon" type="image/png" href={'/static/icon.png'} />
+					<meta httpEquiv="content-language" content="en-gb" />
+					<html lang={'en'} />
+				</Head>
+				<Script
+					id="clarity-init"
+					dangerouslySetInnerHTML={{
+						__html: `
                                 (function(c,l,a,r,i,t,y){
                                     c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
                                     t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
                                     y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
                                 })(window, document, "clarity", "script", "4g3tskl7lj");
                             `,
-						}}
-					/>
-					<GoogleAnalyticsSetup />
-					<link rel="icon" type="image/png" href={'/static/icon.png'} />
-					<meta httpEquiv="content-language" content="en-gb" />
-					<html lang={'en'} />
-				</Head>
+					}}
+				/>
+				<GoogleAnalyticsSetup />
 				<header>
 					<NavBar />
 				</header>
