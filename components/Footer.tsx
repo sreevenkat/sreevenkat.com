@@ -1,27 +1,10 @@
 import React from 'react';
 import { Flex, IconButton, Link } from '@chakra-ui/react';
 import { FaGithub, FaLinkedin, FaTelegramPlane, FaTwitter, FaRss } from 'react-icons/fa';
-// import NowPlaying from './NowPlaying';
 import { GITHUB_URL, LINKEDIN_URL, TELEGRAM_URL, TWITTER_URL, RSS_URL } from '../constants';
-
-// const FooterButton = (props: { text: string; href: string }) => {
-// 	return (
-// 		<NextLink href={props.href} passHref>
-// 			<Button as="a" variant="ghost" fontWeight="300">
-// 				{props.text}
-// 			</Button>
-// 		</NextLink>
-// 	);
-// };
 
 const Footer = () => (
 	<Flex align="center" py={8} direction="column">
-		{/*<NowPlaying />*/}
-		<Flex direction={'row'} fontSize="2xl">
-			{/* <FooterButton text="Now" href="/now" /> */}
-			{/* <FooterButton text="Reading log" href="/reading-log" /> */}
-			{/* <FooterButton text="Dashboard" href="/dashboard" /> */}
-		</Flex>
 		<div>
 			<Link href={TWITTER_URL} title="Twitter" isExternal>
 				<IconButton aria-label="Twitter" icon={<FaTwitter />} size="lg" color="gray.500" variant="ghost" />

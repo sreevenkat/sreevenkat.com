@@ -3,7 +3,6 @@ import CustomCodeBlock from './CustomCodeBlock';
 import { CustomLink } from './CustomLink';
 import { YoutubeEmbed } from './YoutubeEmbed';
 import React from 'react';
-import AudioVisualizer from './AudioVisualizer';
 
 // TODO: I have no clue how to type this stuff
 export const MDXComponents = {
@@ -53,5 +52,4 @@ export const MDXComponents = {
 	},
 	a: CustomLink,
 	YoutubeEmbed: YoutubeEmbed,
-	AudioVisualizer: AudioVisualizer,
 };

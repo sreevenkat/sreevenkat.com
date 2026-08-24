@@ -22,7 +22,7 @@ const ProjectListComponent = () => (
 		<Stack direction="column" spacing={5}>
 			{PROJECT_LIST.map((project) => (
 				<LinkCard
-					key={project.identity}
+					key={project.link}
 					name={project.name}
 					description={project.description}
 					link={project.link}
@@ -54,14 +54,12 @@ const RecentBlogPosts = ({ recentPosts }: { recentPosts: BlogFrontMatter[] }) =>
 			))}
 
 			<Flex flexDirection={'row-reverse'}>
-				<NextLink href={'/posts'}>
-					<Button>
-						<Stack direction="row" align="center" style={{ width: '100%' }} justify="space-between">
-							<Text>View all posts</Text>
-							<AiOutlineArrowRight size="20" />
-						</Stack>
-					</Button>
-				</NextLink>
+				<Button as={NextLink} href={'/posts'}>
+					<Stack direction="row" align="center" style={{ width: '100%' }} justify="space-between">
+						<Text>View all posts</Text>
+						<AiOutlineArrowRight size="20" />
+					</Stack>
+				</Button>
 			</Flex>
 		</Stack>
 	</Stack>
@@ -76,14 +74,12 @@ const RecentNotes = ({ recentNotes }: { recentNotes: BlogFrontMatter[] }) => (
 			))}
 
 			<Flex flexDirection={'row-reverse'}>
-				<NextLink href={'/notes'}>
-					<Button>
-						<Stack direction="row" align="center" style={{ width: '100%' }} justify="space-between">
-							<Text>View all notes</Text>
-							<AiOutlineArrowRight size="20" />
-						</Stack>
-					</Button>
-				</NextLink>
+				<Button as={NextLink} href={'/notes'}>
+					<Stack direction="row" align="center" style={{ width: '100%' }} justify="space-between">
+						<Text>View all notes</Text>
+						<AiOutlineArrowRight size="20" />
+					</Stack>
+				</Button>
 			</Flex>
 		</Stack>
 	</Stack>

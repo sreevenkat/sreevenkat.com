@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import NextLink from 'next/link';
 import Head from 'next/head';
 import Script from 'next/script';
@@ -54,11 +54,9 @@ const navBarItems: Array<{ href: string; text: string }> = [
 
 const NavBarButton = (props: INavBarButtonProps) => {
 	return (
-		<NextLink href={props.href} passHref>
-			<Button as="a" variant="ghost" fontWeight="400">
-				{props.text}
-			</Button>
-		</NextLink>
+		<Button as={NextLink} href={props.href} variant="ghost" fontWeight="400">
+			{props.text}
+		</Button>
 	);
 };
 
@@ -74,6 +72,8 @@ const DesktopLeftNavBar = () => {
 
 const NavBar = () => {
 	const { colorMode, toggleColorMode } = useColorMode();
+	const [mounted, setMounted] = useState(false);
+	useEffect(() => setMounted(true), []);
 	return (
 		<Stack
 			flexDirection="row"
@@ -93,7 +93,7 @@ const NavBar = () => {
 					aria-label="Toggle dark mode"
 					variant="ghost"
 					onClick={toggleColorMode}
-					icon={colorMode == 'dark' ? <SunIcon /> : <MoonIcon />}
+					icon={mounted && colorMode == 'light' ? <MoonIcon /> : <SunIcon />}
 				/>
 			</Box>
 		</Stack>
